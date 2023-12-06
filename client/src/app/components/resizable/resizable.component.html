@@ -1,0 +1,26 @@
+<div class="resize-container" #resizeContainer [style.width.px]="width" [style.height.px]="height" [class.selected]="status !== 0" *ngIf="isActive">
+    <div
+        class="resize-action-corner unselectable"
+        (mousedown)="setStatus(3, $event)"
+        (mouseenter)="onMouseEnter()"
+        (mouseleave)="onMouseLeave()"
+        (dragstart)="(false)"
+        draggable="false"
+    ></div>
+    <div
+        class="resize-action-horizontal unselectable"
+        (mousedown)="setStatus(2, $event)"
+        (mouseenter)="onMouseEnter()"
+        (mouseleave)="onMouseLeave()"
+        (dragstart)="(false)"
+        draggable="false"
+    ></div>
+    <div
+        class="resize-action-vertical unselectable"
+        (mousedown)="setStatus(1, $event)"
+        (mouseenter)="onMouseEnter()"
+        (mouseleave)="onMouseLeave()"
+        (dragstart)="(false)"
+        draggable="false"
+    ></div>
+</div>

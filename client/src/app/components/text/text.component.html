@@ -1,0 +1,45 @@
+<h2>Police</h2>
+<mat-form-field appearance="fill" class="form-field">
+
+  <mat-select #police id="police" [(value)]="textService.police" (valueChange)="textService.drawPreview()"
+    (closed)="(police._elementRef.nativeElement)['blur'].apply(police._elementRef.nativeElement, [])">
+    <mat-option [value]="option" *ngFor="let option of polices">{{ option }}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<div class="row">
+  <div>
+    <h2>Taille</h2>
+    <mat-form-field appearance="fill" class="size-select">
+
+      <mat-select #size id="size" [(value)]="textService.size" (valueChange)="textService.drawPreview()"
+        (closed)="(size._elementRef.nativeElement)['blur'].apply(size._elementRef.nativeElement, [])">
+        <mat-option [value]="option" *ngFor="let option of sizes">{{ option }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="col">
+    <div>
+      <mat-button-toggle class="text-button" id="bold" (click)="bold()" [checked]="textService.bold">
+        <img src="../../../assets/tools/bold.png" alt="B" width="20" height="20" />
+      </mat-button-toggle>
+      <mat-button-toggle class="text-button" id="italic" (click)="italic()" [checked]="textService.italic"><img src="../../../assets/tools/italic.png" alt="I" width="20" height="20" /></mat-button-toggle>
+    </div>
+
+    <br />
+
+    <mat-button-toggle-group id="align" [(value)]="textAlign" (valueChange)="changeAlignment()">
+      <mat-button-toggle class="text-button" value="left">
+        <mat-icon>format_align_left</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle class="text-button" value="center">
+        <mat-icon>format_align_center</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle class="text-button" value="right">
+        <mat-icon>format_align_right</mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+</div>

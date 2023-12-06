@@ -1,0 +1,47 @@
+<div class="container" *ngIf="!isHidden" #container>
+    <section (mousedown)="$event.stopPropagation()">
+        <header class="unselectable">
+            <h1>Couleur</h1>
+
+            <mat-button-toggle-group #group="matButtonToggleGroup" value="{{ getSelectedColor() }}" vertical="true">
+                <mat-button-toggle id="primary" style="text-align: center" (click)="onPrimaryColorClicked()" value="Principale"
+                    >Principale</mat-button-toggle
+                >
+                <mat-button-toggle id="secondary" style="text-align: center" (click)="onSecondaryColorClicked()" value="Secondaire"
+                    >Secondaire</mat-button-toggle
+                >
+            </mat-button-toggle-group>
+        </header>
+        <div class="color-wrapper">
+            <app-color-palette></app-color-palette>
+            <app-color-hue-slider></app-color-hue-slider>
+            <app-color-alpha-slider></app-color-alpha-slider>
+        </div>
+        <div class="flex-row">
+            <svg viewBox="0 0 30 20">
+                <svg [style.fill]="previousColor.hsla()">
+                    <circle cx="20" cy="10" r="10" />
+                    <circle class="stroke" cx="20" cy="10" r="9.5" />
+                </svg>
+
+                <svg [style.fill]="colorService.selectedColor.hsla()">
+                    <circle cx="10" cy="10" r="10" />
+                    <circle class="stroke" cx="10" cy="10" r="9.5" />
+                </svg>
+            </svg>
+            <app-color-hex #colorHex></app-color-hex>
+        </div>
+        <app-color-history #history></app-color-history>
+        <div class="buttons">
+            <button mat-raised-button (click)="cancelSelectedColor()">Annuler</button>
+            <button
+                mat-raised-button
+                (click)="acceptSelectedColor()"
+                [disabled]="colorHex.hexColorFormControl.hasError('pattern')"
+                color="primary"
+            >
+                Ok
+            </button>
+        </div>
+    </section>
+</div>

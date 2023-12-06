@@ -1,0 +1,61 @@
+<div id="container">
+    <button id="left" *ngIf="carouselService.filteredCardsInfoLength > 3" mat-icon-button (click)="onLeft()">
+        <i class="fas fa-chevron-left fa-2x"></i>
+    </button>
+    <section id="cards">
+        <header>Carrousel</header>
+        <mat-spinner *ngIf="carouselService.cardsAreLoading"></mat-spinner>
+        <section id="cards-available" *ngIf="!carouselService.cardsAreLoading && carouselService.filteredCardsInfoLength !== 0">
+            <app-carousel-card
+                #card
+                *ngFor="let i of numberOfCardsToShow()"
+                [class.slideLeft]="cardsOrder[i] != 0 && rightIsAnimating"
+                [class.slideRight]="cardsOrder[i] != 2 && leftIsAnimating"
+                [style.order]="cardsOrder[i]"
+            ></app-carousel-card>
+        </section>
+        <section id="no-cards" *ngIf="carouselService.filteredCardsInfoLength === 0">
+            <span>Oups!</span>
+            <span>Aucun dessin n'a été trouvé</span>
+        </section>
+        <footer>
+            <mat-form-field>
+                <mat-chip-list #chipList>
+                    <mat-chip
+                        *ngFor="let tag of filterService.filters"
+                        [selectable]="false"
+                        removable="true"
+                        (removed)="filterService.removeFilter(tag)"
+                    >
+                        {{ tag }}
+                        <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip>
+                    <input
+                        placeholder="Ajouter un filtre..."
+                        [matChipInputFor]="chipList"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        (matChipInputTokenEnd)="filterService.addFilter($event)"
+                        [formControl]="filterService.tagsFormControl"
+                        [attr.disabled]="filterService.filters.length > MAX_NUMBER_TAGS"
+                    />
+
+                    <mat-error *ngIf="filterService.tagsFormControl.hasError('maxlength')">
+                        Veuillez limiter vos filtres à 25 caractères maximum
+                    </mat-error>
+                    <mat-error *ngIf="filterService.tagsFormControl.hasError('pattern')">
+                        Veuillez n'utiliser que des lettres, chiffres, des '_', des '-' ou des espaces
+                    </mat-error>
+                    <mat-error *ngIf="filterService.filters.length > MAX_NUMBER_TAGS">
+                        Il n'est pas possible de mettre plus que 10 filtres
+                    </mat-error>
+                </mat-chip-list>
+            </mat-form-field>
+            <mat-dialog-actions>
+                <button mat-raised-button [mat-dialog-close]="false" color="primary">Annuler</button>
+            </mat-dialog-actions>
+        </footer>
+    </section>
+    <button id="right" *ngIf="carouselService.filteredCardsInfoLength > 3" mat-icon-button (click)="onRight()">
+        <i class="fas fa-chevron-right fa-2x"></i>
+    </button>
+</div>

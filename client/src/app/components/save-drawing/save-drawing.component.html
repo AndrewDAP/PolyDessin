@@ -1,0 +1,60 @@
+<h2 mat-dialog-title>Sauvegarder le dessin</h2>
+<div mat-dialog-content class="dialog-content">
+    <form>
+        <mat-form-field class="title-input">
+            <mat-label>Titre</mat-label>
+            <input matInput [formControl]="titleFormControl" id="title" />
+            <mat-error *ngIf="titleFormControl.hasError('pattern') && !titleFormControl.hasError('required')">
+                Veuillez n'utiliser que des lettres, chiffres, des '_', des '-' ou des espaces
+            </mat-error>
+            <mat-error *ngIf="titleFormControl.hasError('maxlength') && !titleFormControl.hasError('required')"> 25 caractères maximum </mat-error>
+            <mat-error *ngIf="titleFormControl.hasError('required')"> Le titre est <strong>obligatoire</strong> </mat-error>
+        </mat-form-field>
+
+        <br />
+        <br />
+
+        <mat-form-field class="tags-input">
+            <mat-label>Étiquettes<br />Séparez vos étiquettes d'une virgule ou appuyez sur Entrer</mat-label>
+            <br />
+            <mat-chip-list #chipList aria-label="Étiquettes">
+                <mat-chip *ngFor="let tag of tags" removable="true" (removed)="remove(tag)">
+                    {{ tag }}
+                    <mat-icon matChipRemove>cancel</mat-icon>
+                </mat-chip>
+                <input
+                    placeholder="Entrez votre étiquette"
+                    [matChipInputFor]="chipList"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                    [matChipInputAddOnBlur]="true"
+                    (matChipInputTokenEnd)="add($event)"
+                    [formControl]="tagsFormControl"
+                />
+                <mat-error *ngIf="tagsFormControl.hasError('maxlength')"> Veuillez limiter vos étiquettes à 25 caractères maximum </mat-error>
+                <mat-error *ngIf="tagsFormControl.hasError('pattern')">
+                    Veuillez n'utiliser que des lettres, chiffres, des '_', des '-' ou des espaces
+                </mat-error>
+                <mat-error *ngIf="tags.length > MAX_NUMBER_TAGS"> Il n'est pas possible de mettre plus que 10 étiquettes </mat-error>
+            </mat-chip-list>
+        </mat-form-field>
+    </form>
+</div>
+<mat-dialog-actions>
+    <button mat-raised-button [mat-dialog-close]="undefined">Annuler</button>
+    <button
+        mat-raised-button
+        [mat-dialog-close]="accept()"
+        [disabled]="
+            titleFormControl.hasError('pattern') ||
+            titleFormControl.hasError('required') ||
+            titleFormControl.hasError('maxLength') ||
+            tagsFormControl.hasError('pattern') ||
+            tagsFormControl.hasError('maxLength') ||
+            tags.length > MAX_NUMBER_TAGS
+        "
+        color="primary"
+        (click)="toolsInfoService.saveButtonDisabled = true"
+    >
+        Sauvegarder
+    </button>
+</mat-dialog-actions>

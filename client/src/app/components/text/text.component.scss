@@ -1,0 +1,50 @@
+@import '../sidebar-properties/sidebar-properties.component.scss';
+.form-field {
+    display: inline;
+}
+
+.size-select {
+    width: 60px;
+    position: relative;
+}
+
+
+.bold{
+  font-family: 'Calibri';
+  font-size: 2em;
+  font-weight: 900 !important;
+}
+
+.italic{
+  font-family: 'Calibri';
+  font-size: 2em;
+  font-style: italic;
+}
+
+mat-button-toggle{
+  min-height : 30px !important;
+  max-height: 30px !important;
+  min-width : 30px !important;
+  max-width: 30px !important;
+}
+
+.text-button ::ng-deep .mat-button-toggle-label-content {
+  padding: 2px 0px 0px 0px !important;
+}
+
+::ng-deep .mat-form-field-flex.ng-tns-c75-6{
+  padding: 0px !important;
+}
+.row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.col{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+

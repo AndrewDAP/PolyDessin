@@ -1,0 +1,22 @@
+@import '../../../../styles.scss';
+
+.history {
+    padding: $margin-size;
+    background-color: #eeeeee;
+    border-radius: 10px;
+    font-weight: bold !important;
+}
+
+.grid {
+    padding-top: $margin-size;
+    display: grid;
+    justify-content: space-between;
+    gap: auto;
+    grid-template-columns: repeat(5, 40px);
+    grid-template-rows: repeat(2 40px);
+}
+
+app-color-swatch {
+    width: 40px;
+    align-self: center;
+}

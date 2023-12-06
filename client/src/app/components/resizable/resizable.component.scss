@@ -1,0 +1,49 @@
+.resize-container {
+    position: relative;
+    cursor: crosshair;
+    z-index: 0;
+    &:active {
+        border: 1px dashed black;
+        z-index: 3;
+    }
+}
+
+.resize-action-corner {
+    position: absolute;
+    left: 100%;
+    top: 100%;
+    transform: translate(-80%, -80%);
+    width: 35px;
+    height: 35px;
+    background-image: url('../../../assets/handles/corner-handle.svg');
+    z-index: 0;
+    &:hover {
+        cursor: nwse-resize;
+    }
+}
+
+.resize-action-horizontal {
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+    width: 35px;
+    height: 35px;
+    background-image: url('../../../assets/handles/bottom-handle.svg');
+    &:hover {
+        cursor: n-resize;
+    }
+}
+
+.resize-action-vertical {
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 35px;
+    height: 35px;
+    background-image: url('../../../assets/handles/right-handle.svg');
+    &:hover {
+        cursor: w-resize;
+    }
+}

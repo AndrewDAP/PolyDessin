@@ -1,0 +1,93 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$client-primary: mat-palette($mat-deep-purple, 800, 900);
+$client-accent: mat-palette($mat-deep-orange, A200, A400);
+
+// The warn palette is optional (defaults to red).
+$client-warn: mat-palette($mat-pink, 400);
+
+$primary: mat-color($client-primary);
+$accent: mat-color($client-accent);
+$warn: mat-color($client-warn);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$client-theme: mat-light-theme(
+    (
+        color: (
+            primary: $client-primary,
+            accent: $client-accent,
+            warn: $client-warn,
+        ),
+    )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($client-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+@font-face {
+    font-family: gotham-book;
+    src: url(../src/assets/fonts/Gotham-Book.otf) format('opentype');
+}
+
+@font-face {
+    font-family: gotham-light;
+    src: url(../src/assets/fonts/Gotham-Light.otf) format('opentype');
+}
+
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+.mat-button-toggle-label-content {
+    font-weight: 300;
+    line-height: 0px !important;
+    padding: 12px 10px 10px 10px !important;
+}
+
+$margin-size: 16px;
+
+.unselectable {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+
+::ng-deep .mat-dialog-container {
+    border-radius: $margin-size !important;
+    background-color: rgba(230, 230, 230, 0.95) !important;
+    min-width: min-content;
+    min-height: min-content;
+}
+
+::ng-deep .mat-tooltip {
+    font-family: 'Roboto light', sans-serif;
+}
+
+::ng-deep .mat-chip.mat-standard-chip {
+    background-color: #ff910069 !important;
+    border: 1px solid $accent !important;
+    color: $accent !important;
+    font-weight: 300;
+    margin: 2px;
+}

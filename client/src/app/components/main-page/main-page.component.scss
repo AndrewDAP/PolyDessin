@@ -1,0 +1,83 @@
+@import '../../../styles.scss';
+
+.container {
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+    min-height: 100vh;
+    height: auto;
+    color: white !important;
+    background-color: rgb(240, 240, 240);
+    position: absolute;
+
+    background-image: url('../../../assets/entry-point/main-page-background.svg');
+    height: 100%;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+// .background {
+//     position: absolute;
+//     top: 0px;
+//     z-index: 0;
+//     height: 100%;
+// }
+
+.gotham-light {
+    font-family: gotham-light;
+}
+
+.gotham-book {
+    font-family: gotham-book;
+}
+
+.accent {
+    color: $accent;
+}
+
+.warn {
+    color: $warn;
+}
+
+.white {
+    color: white !important;
+}
+
+.title {
+    font-size: 10vw;
+    position: absolute;
+    top: 40vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    top: 55vh;
+}
+
+button {
+    padding: auto;
+    margin: 0px 50px;
+    min-width: min-content;
+}
+
+.footer-item {
+    text-align: center;
+    font-size: 1em;
+    position: relative;
+    top: 92vh;
+}
+
+.server-message {
+    justify-content: center;
+    width: 20%;
+    min-width: min-content;
+}

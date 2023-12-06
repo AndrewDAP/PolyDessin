@@ -1,0 +1,10 @@
+<div class="selection" [style.width.px]="width" [style.height.px]="height" [style.left.px]="left" [style.top.px]="top" [class.active]="isActive">
+    <div class="handle nw" [class.active]="isActive" (mousedown)="setState(1)" (dragstart)="(false)" draggable="false"></div>
+    <div class="handle n" [class.active]="isActive" (mousedown)="setState(2)" (dragstart)="(false)" draggable="false"></div>
+    <div class="handle ne" [class.active]="isActive" (mousedown)="setState(3)" (dragstart)="(false)" draggable="false"></div>
+    <div class="handle w" [class.active]="isActive" (mousedown)="setState(4)" (dragstart)="(false)" draggable="false"></div>
+    <div class="handle e" [class.active]="isActive" (mousedown)="setState(5)" (dragstart)="(false)" draggable="false"></div>
+    <div class="handle sw" [class.active]="isActive" (mousedown)="setState(6)" (dragstart)="(false)" draggable="false"></div>
+    <div class="handle s" [class.active]="isActive" (mousedown)="setState(7)" (dragstart)="(false)" draggable="false"></div>
+    <div class="handle se" [class.active]="isActive" (mousedown)="setState(8)" (dragstart)="(false)" draggable="false"></div>
+</div>

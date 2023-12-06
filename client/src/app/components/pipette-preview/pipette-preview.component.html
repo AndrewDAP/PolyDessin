@@ -1,0 +1,14 @@
+<div class="preview">
+    <table>
+        <tbody>
+            <tr *ngFor="let rowEl of [].constructor(size); let row = index">
+                <td
+                    *ngFor="let colEl of [].constructor(size); let col = index"
+                    [style.background-color]="pixels[col + row * size][0].hsla()"
+                    [attr.data-x]="col"
+                    [attr.data-y]="row"
+                ></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

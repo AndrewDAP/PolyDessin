@@ -1,0 +1,40 @@
+import { KeyEventMask } from './key-event-mask';
+
+export class DefaultKeyEventMask implements KeyEventMask {
+    downMask: string[] = [
+        'Alt',
+        'Backspace',
+        'Enter',
+        'Escape',
+        'Delete',
+        'Shift',
+        'ArrowUp',
+        'ArrowDown',
+        'ArrowLeft',
+        'ArrowRight',
+        'a',
+        'b',
+        'c',
+        'd',
+        'e',
+        'g',
+        'i',
+        'l',
+        'm',
+        'o',
+        'r',
+        's',
+        't',
+        'v',
+        'x',
+        'z',
+        'Z',
+        '1',
+        '2',
+        '3',
+        '+',
+        '=',
+        '-',
+    ];
+    upMask: string[] = ['Shift', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Alt'];
+}

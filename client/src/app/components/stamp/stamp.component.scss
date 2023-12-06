@@ -1,0 +1,29 @@
+@import '../sidebar-properties/sidebar-properties.component.scss';
+
+.flex-row {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.mat-button-toggle-group {
+    justify-content: center;
+    align-items: center;
+}
+$size: 45px;
+$toggleSize: 55px;
+
+.mat-button-toggle {
+    height: $toggleSize !important;
+    width: $toggleSize !important;
+}
+
+.toggle-image {
+    margin-left: -5px;
+    margin-top: -7px;
+
+    width: $size;
+    height: $size;
+}
+
+

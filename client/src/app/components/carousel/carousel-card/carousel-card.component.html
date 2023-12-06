@@ -1,0 +1,21 @@
+<div (click)="onClick()" *ngIf="imageInfo != undefined" class="container" @fade [@fade]="enabled.toString()">
+    <section id="image" *ngIf="!imageIsLoading">
+        <img #img [attr.src]="imageInfo.data || IMAGE_NOT_FOUND_PATH" />
+    </section>
+    <section id="spinner" *ngIf="imageIsLoading">
+        <mat-spinner></mat-spinner>
+    </section>
+
+    <section id="description">
+        <div id="title">{{ imageInfo.title }}</div>
+        <div id="tags">
+            <mat-chip-list>
+                <mat-chip *ngFor="let tag of imageInfo.tags">{{ tag }}</mat-chip>
+            </mat-chip-list>
+        </div>
+    </section>
+
+    <button id="delete" mat-icon-button (click)="onDelete($event)">
+        <i class="fas fa-trash fa-2x"></i>
+    </button>
+</div>

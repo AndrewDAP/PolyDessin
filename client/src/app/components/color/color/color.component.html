@@ -1,0 +1,23 @@
+<div class="container">
+    <img
+        (click)="colorService.swapPrimaryAndSecondaryColors()"
+        class="unselectable"
+        id="switch-colors"
+        src="assets/color/SwitchColors.svg"
+        width="20"
+        height="20"
+        alt="swap"
+    />
+    <svg viewBox="0 0 100 100">
+        <svg id="secondary-color" (click)="colorService.secondaryColorClicked()" [style.fill]="secondaryColor.hsla()">
+            <circle cx="65" cy="65" r="32.5" />
+            <circle class="stroke" cx="65" cy="65" r="31.5" />
+            <circle class="stroke" cx="65" cy="65" r="15.5" />
+            <circle fill="white" cx="65" cy="65" r="14.5" />
+        </svg>
+        <svg id="primary-color" (click)="colorService.primaryColorClicked()" [style.fill]="primaryColor.hsla()">
+            <circle cx="35" cy="35" r="32.5" />
+            <circle class="stroke" cx="35" cy="35" r="31.5" />
+        </svg>
+    </svg>
+</div>

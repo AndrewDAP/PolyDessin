@@ -1,0 +1,78 @@
+@import '../../../../styles.scss';
+#container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+header {
+    font-weight: 800;
+    font-size: 3em;
+    padding: $margin-size;
+}
+
+section {
+    display: flex;
+    flex-direction: row;
+}
+
+app-carousel-card {
+    padding: $margin-size;
+}
+.slideRight {
+    animation-name: slideRight;
+    animation-duration: 0.1s;
+}
+
+.slideLeft {
+    animation-name: slideLeft;
+    animation-duration: 0.1s;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+#cards {
+    display: flex;
+    flex-direction: column;
+}
+
+@keyframes slideRight {
+    from {
+        transform: translateX(0px);
+    }
+    to {
+        transform: translateX(332px);
+    }
+}
+
+@keyframes slideLeft {
+    from {
+        transform: translateX(0px);
+    }
+    to {
+        transform: translateX(-332px);
+    }
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+#no-cards {
+    font-weight: 400;
+    font-size: 2.5em;
+    padding: 5 * $margin-size;
+    flex-direction: column;
+    line-height: 1em;
+}
+
+mat-dialog-actions {
+    display: flex;
+    flex-direction: row;
+    margin-left: $margin-size;
+}

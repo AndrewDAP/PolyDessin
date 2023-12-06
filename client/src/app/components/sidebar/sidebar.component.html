@@ -1,0 +1,82 @@
+<div class="container unselectable">
+  <div class="sidebar-container">
+    <div class="sidebar-background">
+      <div class="flex-col">
+        <section class="grid">
+          <button mat-raised-button (click)="onNewDrawing()" routerLink="/editor" class="new-drawing sidebar-height"
+            matTooltipClass="tooltip" [matTooltip]="newDrawingInformation" matTooltipPosition="right"
+            matTooltipShowDelay="500">
+            <img src="../../../assets/tools/new-drawing.svg" alt="nouveau dessin" width="24" height="24" />
+          </button>
+
+          <button mat-raised-button (click)="onSaveDrawing()" class="save-drawing sidebar-height"
+            matTooltipClass="tooltip" [matTooltip]="saveDrawingInformation" matTooltipPosition="right"
+            matTooltipShowDelay="500" [disabled]="toolsInfoService.saveButtonDisabled">
+
+            <img src="../../../assets/tools/save.png" alt="save" width="24" height="24" />
+          </button>
+
+          <button mat-raised-button (click)="onExportDrawing()" class="export-drawing sidebar-height"
+            matTooltipClass="tooltip" [matTooltip]="exportDrawingInformation" matTooltipPosition="right"
+            matTooltipShowDelay="500">
+            <img src="../../../assets/tools/export.png" alt="export" width="24" height="24" />
+          </button>
+
+          <app-carousel-tool></app-carousel-tool>
+
+          <button mat-raised-button
+            (click)="toolsInfoService.showClipboardProperties = !toolsInfoService.showClipboardProperties"
+            matTooltipClass="tooltip" [matTooltip]="'Presse Papier'">
+            <mat-icon>content_paste</mat-icon>
+          </button>
+
+          <button mat-raised-button
+            (click)="toolsInfoService.showGridProperties = !toolsInfoService.showGridProperties"
+            [matTooltip]="'Grille'" matTooltipPosition="right" matTooltipShowDelay="500">
+            <img src="../../../assets/tools/grid.png" alt="Sélection" width="24" height="24" />
+          </button>
+        </section>
+        <div class="sidebar-row">
+          <div class="sidebar-col">
+            <mat-button-toggle-group #group="matButtonToggleGroup" vertical="true" [value]='currentTool'>
+              <mat-button-toggle *ngFor="let tool of leftColumnInformation;" (click)="onToolChanged(tool.tooltype)"
+                [value]="tool.tooltype" [matTooltip]="tool.matTooltip" matTooltipPosition="right"
+                matTooltipShowDelay="500" [hidden]="tool.hidden">
+                <img src="{{ tool.src }}" alt="{{ tool.alt }}" width="30" height="30" />
+              </mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+          <div class="sidebar-col">
+            <mat-button-toggle-group #group="matButtonToggleGroup" [value]="currentTool" vertical="true">
+              <mat-button-toggle *ngFor="let tool of rightColumnInformation" (click)="onToolChanged(tool.tooltype)"
+                [value]="tool.tooltype" [matTooltip]="tool.matTooltip" matTooltipPosition="right"
+                matTooltipShowDelay="500" [hidden]="tool.hidden">
+                <img src="{{ tool.src }}" alt="{{ tool.alt }}" width="30" height="30" />
+              </mat-button-toggle>
+
+              <mat-button-toggle (click)="onToolChanged(tooltype.rectangleSelection)" [checked]="
+                        currentTool === tooltype.rectangleSelection ||
+                        currentTool === tooltype.ellipseSelection ||
+                        currentTool === tooltype.lassoPolygonal
+                    " [matTooltip]="'Selection'" matTooltipPosition="right" matTooltipShowDelay="500">
+                <img src="../../../assets/tools/selection.png" alt="Sélection" width="30" height="30" />
+              </mat-button-toggle>
+            </mat-button-toggle-group>
+
+          </div>
+        </div>
+        <app-undo-redo></app-undo-redo>
+        <app-color></app-color>
+
+      </div>
+
+
+    </div>
+
+    <button mat-button (click)="back()" *ngIf="locationService.openEditorFromMainPage" class="x-button">
+      <i class="fas fa-long-arrow-alt-left fa-2x back"></i>
+    </button>
+  </div>
+
+  <app-sidebar-properties></app-sidebar-properties>
+</div>

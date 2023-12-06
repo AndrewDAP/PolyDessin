@@ -1,0 +1,9 @@
+<div class="container">
+    <button mat-button (click)="onUndo()" [disabled]="undoDisabled" id="undo">
+        <i class="fa-2x fas fa-undo-alt"></i>
+    </button>
+
+    <button mat-button (click)="onRedo()" [disabled]="redoDisabled" id="redo">
+        <i class="fa-2x fas fa-redo-alt"></i>
+    </button>
+</div>

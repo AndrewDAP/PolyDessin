@@ -1,0 +1,132 @@
+$margin-size: 8px;
+
+header{
+  padding : 0px;
+  font-weight: 800;
+  font-size: 1.25em;
+}
+
+.sidebar-height{
+  height : 52px;
+}
+
+
+.sidebar-space{
+  margin-right: $margin-size/2;
+}
+
+.properties-container {
+    background-color: white;
+    border-radius: $margin-size;
+    padding: $margin-size;
+    margin-top: $margin-size;
+    display: flex;
+    flex-direction: column;
+    width: 180px;
+
+    transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+
+.properties-container:active {
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+section {
+    margin-top: $margin-size;
+    padding: $margin-size;
+    background-color: #eeeeee;
+    border-radius: $margin-size/2;
+    size: 1em;
+
+    overflow:hidden;
+
+    transition:max-height 1s ease;
+    transition:margin-top .2s ease;
+
+    max-height:1080px;
+    height: auto;
+}
+
+
+
+h3 {
+    font-weight: 300;
+    font-size: 1em;
+}
+
+h2 {
+    font-weight: 400;
+    font-size: 1em;
+    margin : 0;
+}
+
+mat-slider{
+  padding : 0;
+}
+
+.flex-row {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding : 0 !important;
+}
+
+.flex-row button {
+    width: 35px !important;
+    min-width: 35px !important;
+    padding: 0 !important;
+}
+
+.flex-col {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.align-baseline {
+    align-items: baseline;
+}
+
+.align-center {
+    align-items: center;
+}
+
+
+.pipette-container {
+    justify-content: center;
+}
+
+.select-all {
+    margin-top: 20px;
+    // display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    h2 {
+        margin-bottom: 10px;
+    }
+
+    img {
+        align-content: center;
+        padding: 2px;
+    }
+}
+
+::ng-deep .select-all button {
+    width: 50px !important;
+    min-width: 50px !important;
+    padding: 0 !important;
+}
+
+mat-radio-button {
+    margin-top: 8px;
+}
+
+mat-radio-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}

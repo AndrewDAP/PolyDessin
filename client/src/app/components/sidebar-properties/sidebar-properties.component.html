@@ -1,0 +1,200 @@
+<div class="properties-container unselectable" *ngIf="toolsInfoService.showClipboardProperties">
+  <header>Presse Papier</header>
+  <section>
+    <div class="flex-row">
+      <button mat-raised-button class="selection-button" (click)="copy()" [disabled]="!selectionIdle"
+        matTooltipClass="tooltip" [matTooltip]="'Copier [Ctrl-c]'">
+        <mat-icon>content_copy</mat-icon>
+      </button>
+      <button mat-raised-button class="selection-button" (click)="paste()" [disabled]="!clipboardHasData"
+        matTooltipClass="tooltip" [matTooltip]="'Coller [Ctrl-v]'">
+        <mat-icon>content_paste</mat-icon>
+      </button>
+      <button mat-raised-button class="selection-button" (click)="cut()" [disabled]="!selectionIdle"
+        matTooltipClass="tooltip" [matTooltip]="'Couper [Ctrl-x]'">
+        <mat-icon>content_cut</mat-icon>
+      </button>
+      <button mat-raised-button class="selection-button" (click)="delete()" [disabled]="!selectionIdle"
+        matTooltipClass="tooltip" [matTooltip]="'Supprimer [Delete]'">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </section>
+</div>
+
+<div class="properties-container unselectable">
+  <header>Propriétés</header>
+  <section *ngIf="
+                    currentTool !== tooltype.pipette &&
+                    currentTool !== tooltype.text &&
+                    currentTool !== tooltype.rectangleSelection&&
+                    currentTool !== tooltype.ellipseSelection &&
+                    currentTool !== tooltype.lassoPolygonal &&
+                    currentTool !== tooltype.paint &&
+                    currentTool !== tooltype.stamp
+                ">
+    <h2>
+      <h2 *ngIf="currentTool === tooltype.aerosol">Diamètre</h2>
+      <h2 *ngIf="currentTool !== tooltype.aerosol">Taille</h2>
+    </h2>
+
+    <div class="flex-row align-center">
+      <mat-slider (input)="onSizeChanged($event.value)" [min]="minSliderSize" [max]="maxSliderSize" step="1"
+        [value]="currentToolSize"></mat-slider>
+      <h3>{{ currentToolSize }}</h3>
+    </div>
+  </section>
+
+  <section *ngIf="currentTool === tooltype.paint" class="paint">
+    <h2>
+      <h2>Tolérance</h2>
+      <div class="flex-row align-center">
+        <mat-slider [(value)]="paintService.tolerance" (input)="paintService.tolerance = $event.value" min="0" max="100"
+          step="1"></mat-slider>
+        <h3>{{ paintService.tolerance }}</h3>
+      </div>
+    </h2>
+  </section>
+
+  <section *ngIf="currentTool === tooltype.line" class="lineSpecs">
+    <h2 class="flex-row align-baseline">
+      <h2>Jonction</h2>
+      <mat-slide-toggle (input)="onJunctionToggle()" [checked]="showLineJunction"></mat-slide-toggle>
+    </h2>
+
+    <div *ngIf="showLineJunction">
+      <div class="flex-row align-center">
+        <mat-slider (input)="onSizeChangedOfJunction($event.value)" min="3" max="30" step="1" [value]="junctionSize">
+        </mat-slider>
+        <h3>{{ junctionSize }}</h3>
+      </div>
+    </div>
+  </section>
+
+  <div *ngIf="currentTool === tooltype.stamp" class="stampSpecs">
+    <app-stamp></app-stamp>
+  </div>
+
+  <section
+    *ngIf="currentTool === tooltype.rectangle || currentTool === tooltype.ellipse || currentTool === tooltype.polygon">
+    <h2 class="flex-row align-baseline">
+      <h2>Remplissage</h2>
+    </h2>
+    <div class="flex-col">
+      <div>
+        <mat-radio-group>
+          <mat-radio-button value="1" (click)="setFillStyle(true, false)" [checked]="withFill && !withStroke">Plein
+          </mat-radio-button>
+          <mat-radio-button value="2" (click)="setFillStyle(false, true)" [checked]="withStroke && !withFill">
+            Contour</mat-radio-button>
+          <mat-radio-button value="3" (click)="setFillStyle(true, true)" [checked]="withFill && withStroke">Plein et
+            Contour</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+  </section>
+
+  <section *ngIf="currentTool === tooltype.polygon">
+    <h2 class="flex-row align-baseline">
+      <h2>Nombre de côtés</h2>
+    </h2>
+    <div class="flex-row">
+
+      <mat-slider (input)="setSides($event.value)" [min]="minSidesSlider" [max]="maxSidesSlider" step="1"
+        [value]="sides"></mat-slider>
+      <h3>{{ sides }}</h3>
+
+    </div>
+  </section>
+
+  <div *ngIf="
+                    currentTool === tooltype.rectangleSelection ||
+                    currentTool === tooltype.ellipseSelection ||
+                    currentTool === tooltype.lassoPolygonal
+                ">
+    <section>
+      <h2 class="flex-row align-baseline">
+        <h2>Sélection</h2>
+      </h2>
+      <div class="flex-row">
+        <button class="selection-button" mat-raised-button (click)="onToolChanged(tooltype.rectangleSelection)"
+          [disabled]="currentTool === tooltype.rectangleSelection" matTooltipClass="tooltip"
+          [matTooltip]="'Sélection par Rectangle [ R ]'">
+          <mat-icon>crop_square</mat-icon>
+        </button>
+        <button mat-raised-button class="selection-button" (click)="onToolChanged(tooltype.ellipseSelection)"
+          [disabled]="currentTool === tooltype.ellipseSelection" matTooltipClass="tooltip"
+          [matTooltip]="'Sélection  par Ellipse[ S ]'">
+          <mat-icon>panorama_fish_eye</mat-icon>
+        </button>
+        <button mat-raised-button class="selection-button" (click)="onToolChanged(tooltype.lassoPolygonal)"
+          [disabled]="currentTool === tooltype.lassoPolygonal" matTooltipClass="tooltip"
+          [matTooltip]="'Sélection par Lasso Polygonale [ V ]'">
+          <img src="../../../assets/tools/lasso.svg" alt="Sélection par lasso polygonal" width="30" height="30" />
+        </button>
+        <button mat-raised-button class="selection-button" (click)="selectAll()" matTooltipClass="tooltip"
+          [matTooltip]="'Tout sélectionner [Ctrl + A]'">
+          <img src="../../../assets/tools/select_all.png" alt="Select all" width="20" height="20" />
+        </button>
+      </div>
+    </section>
+    <section>
+
+      <app-magnet></app-magnet>
+    </section>
+  </div>
+
+  <section *ngIf="currentTool === tooltype.aerosol">
+    <h2>Émissions/s</h2>
+    <div class="flex-row align-center">
+      <mat-slider (input)="onChangedOfDropletSpeed($event.value)" min="35" max="150" step="1" [value]="dropletSpeed">
+      </mat-slider>
+      <h3>{{ dropletSpeed }}</h3>
+    </div>
+    <h2>Diamètre goutte</h2>
+    <div class="flex-row align-center">
+      <mat-slider (input)="onSizeChangedOfDroplet($event.value)" min="1" max="10" step="1" [value]="dropletSize">
+      </mat-slider>
+      <h3>{{ dropletSize }}</h3>
+    </div>
+  </section>
+
+  <section *ngIf="currentTool === tooltype.pipette && showPipettePreview">
+    <header class="flex-row align-baseline">
+      <h2>Vue Pipette</h2>
+    </header>
+    <div class="flex-row pipette-container align-center">
+      <app-pipette-preview></app-pipette-preview>
+    </div>
+  </section>
+  <section *ngIf="currentTool === tooltype.text">
+    <app-text></app-text>
+  </section>
+</div>
+
+<div *ngIf="toolsInfoService.showGridProperties" class="properties-container unselectable">
+  <header>Grille</header>
+  <section>
+    <div class="flex-row">
+      <h2>Afficher grille</h2>
+      <mat-slide-toggle (input)="onJunctionToogleShowCanvas()" [checked]="showGridCanvas"></mat-slide-toggle>
+    </div>
+
+  </section>
+  <section *ngIf="showGridCanvas">
+
+    <h2>Opacité</h2>
+    <div class="flex-row align-center">
+      <mat-slider (input)="onChangedOfOpacity($event.value)" [min]="minSliderOpacity" [max]="maxSliderOpacity" step="1"
+        [value]="opacityCanvas"></mat-slider>
+      <h3>{{ opacityCanvas }}</h3>
+    </div>
+    <h2>Taille des carrés</h2>
+    <div class="flex-row align-center">
+      <mat-slider (input)="onChangedOfSquareSize($event.value)" [min]="minSliderSquareSize" [max]="maxSliderSquareSize"
+        step="1" [value]="squareSizeCanvas"></mat-slider>
+      <h3>{{ squareSizeCanvas }}</h3>
+    </div>
+
+  </section>
+</div>

@@ -1,0 +1,17 @@
+export enum ToolType {
+    pencil,
+    aerosol,
+    eraser,
+    line,
+    text,
+    rectangle,
+    ellipse,
+    polygon,
+    paint,
+    stamp,
+    pipette,
+    rectangleSelection,
+    ellipseSelection,
+    lassoPolygonal,
+    grid,
+}

@@ -1,0 +1,43 @@
+<div class="flex-row">
+    <h2>Magnétisme</h2>
+    <mat-slide-toggle (change)="toggleMagnet()" [checked]="magnetActive" ></mat-slide-toggle>
+</div>
+
+<div class="selection-magnet-position" *ngIf="magnetActive">
+    <div class="center">
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" value="{{ currentChoosenMagnetHandle }}" vertical="false">
+            <mat-button-toggle value="0" (click)="onMagnetHandleChange(0)"
+                ><img class="toggle-image" src="../../../../assets/tools/magnet-handle/1.svg" alt="001"
+            /></mat-button-toggle>
+            <mat-button-toggle value="1" (click)="onMagnetHandleChange(1)"
+                ><img class="toggle-image" src="../../../../assets/tools/magnet-handle/2.svg" alt="002"
+            /></mat-button-toggle>
+            <mat-button-toggle value="2" (click)="onMagnetHandleChange(2)"
+                ><img class="toggle-image" src="../../../../assets/tools/magnet-handle/3.svg" alt="003"
+            /></mat-button-toggle>
+        </mat-button-toggle-group>
+
+            <mat-button-toggle-group name="fontStyle" aria-label="Font Style" value="{{ currentChoosenMagnetHandle }}" vertical="false">
+                <mat-button-toggle value="3" (click)="onMagnetHandleChange(3)"
+                    ><img class="toggle-image" src="../../../../assets/tools/magnet-handle/4.svg" alt="001"
+                /></mat-button-toggle>
+                <mat-button-toggle value="4" (click)="onMagnetHandleChange(4)"
+                    ></mat-button-toggle>
+                <mat-button-toggle value="5" (click)="onMagnetHandleChange(5)"
+                    ><img class="toggle-image" src="../../../../assets/tools/magnet-handle/6.svg" alt="003"
+                /></mat-button-toggle>
+            </mat-button-toggle-group>
+
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" value="{{ currentChoosenMagnetHandle }}" vertical="false">
+            <mat-button-toggle value="6" (click)="onMagnetHandleChange(6)"
+                ><img class="toggle-image" src="../../../../assets/tools/magnet-handle/7.svg" alt="001"
+            /></mat-button-toggle>
+            <mat-button-toggle value="7" (click)="onMagnetHandleChange(7)"
+                ><img class="toggle-image" src="../../../../assets/tools/magnet-handle/8.svg" alt="002"
+            /></mat-button-toggle>
+            <mat-button-toggle value="8" (click)="onMagnetHandleChange(8)"
+                ><img class="toggle-image" src="../../../../assets/tools/magnet-handle/9.svg" alt="003"
+            /></mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+</div>

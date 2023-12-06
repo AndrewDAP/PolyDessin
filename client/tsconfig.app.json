@@ -1,0 +1,25 @@
+{
+    "extends": "./tsconfig.base.json",
+    "compilerOptions": {
+        "outDir": "./out-tsc/app",
+        "types": []
+    },
+    "files": [
+        "src/main.ts",
+        "src/polyfills.ts",
+        "src/app/classes/commands/resize-canvas-command.ts",
+        "src/app/classes/commands/draw-ellipse-command.ts",
+        "src/app/classes/commands/draw-rectangle-command.ts",
+        "src/app/classes/commands/draw-line-command.ts",
+        "src/app/classes/commands/erase-line-command.ts",
+        "src/app/classes/commands/draw-pencil-command.ts",
+        "./src/app/classes/key-event-masks/default-key-event-mask.ts",
+        "./src/app/classes/key-event-masks/color-key-event-mask.ts",
+        "./src/app/classes/key-event-masks/dialog-key-event-mask.ts",
+        "./src/app/classes/key-event-masks/carousel-key-event-mask.ts",
+        "src/app/classes/paint/paint-non-contiguous.ts",
+        "src/app/classes/paint/paint-contiguous.ts",
+        "src/app/classes/commands/paint-command.ts"
+    ],
+    "include": ["src/**/*.d.ts"]
+}

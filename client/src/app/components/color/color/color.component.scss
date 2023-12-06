@@ -1,0 +1,17 @@
+.container {
+    margin-top: 10%;
+    position: relative;
+}
+
+.stroke {
+    stroke: rgb(32, 32, 32);
+    stroke-opacity: 0.1;
+    stroke-width: 2;
+}
+
+#switch-colors {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+}

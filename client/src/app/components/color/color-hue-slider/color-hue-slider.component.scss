@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.color-slider:hover {
+    cursor: pointer;
+}
+
+.color-slider {
+    width: min-content;
+}
+
+canvas {
+    border-radius: 5px;
+}
+
+.pointer {
+    position: relative;
+    translate: -10px;
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

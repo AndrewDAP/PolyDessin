@@ -1,0 +1,11 @@
+<button
+    mat-raised-button
+    (click)="openCarousel()"
+    matTooltipClass="tooltip"
+    matTooltip="Caroussel [CTRL + G]"
+    matTooltipPosition="right"
+    matTooltipShowDelay="500"
+    [disabled]="toolsInfoService.carouselLoading"
+>
+  <img src="assets/tools/carousel.png" alt="carousel" width="24" height="24" />
+</button>

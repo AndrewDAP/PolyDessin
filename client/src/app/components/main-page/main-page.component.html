@@ -1,0 +1,22 @@
+<div class="container background-color">
+    <div class="title"><span class="gotham-light accent">POLY</span><span class="gotham-book warn">DESSIN</span></div>
+    <div class="buttons">
+        <button mat-raised-button class="accent" (click)="openEditor()" routerLink="/editor">Nouveau dessin</button>
+        <button mat-raised-button color="accent" class="white" [disabled]="checkContinuedDrawing()" (click)="continueDrawing()" routerLink="/editor">
+            Continuer un dessin
+        </button>
+        <button
+            mat-raised-button
+            class="accent"
+            (click)="openCarousel()"
+            [disabled]="this.carouselService.filteredCardsInfoLength === 0"
+            routerLink="/carrousel"
+        >
+            Carrousel de dessins
+        </button>
+    </div>
+
+    <div class="footer-item">
+        <p>Simon Mercier, Marc-Olivier Derouin, Florence Lauer, Thomas Caron, Andrew Pham</p>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+<div class="container">
+    <app-sidebar></app-sidebar>
+    <div class="drawing-container" (scroll)="onScroll($event)">
+        <app-drawing class="drawing" tabindex="0"></app-drawing>
+    </div>
+    <app-color-picker cdkDragBoundary=".container" cdkDrag></app-color-picker>
+</div>

@@ -1,0 +1,44 @@
+<section>
+<h2>Étampe</h2>
+
+<mat-button-toggle-group name="fontStyle" aria-label="Font Style" value="{{ stampService.stampChoice }}" vertical="false">
+    <mat-button-toggle value="0" (click)="onStampChanged(0)"
+        ><img class="toggle-image" src="../../../assets/stamp/0.png" alt="0"
+    /></mat-button-toggle>
+    <mat-button-toggle value="1" (click)="onStampChanged(1)"
+        ><img class="toggle-image" src="../../../assets/stamp/1.png" alt="1"
+    /></mat-button-toggle>
+    <mat-button-toggle value="2" (click)="onStampChanged(2)"
+        ><img class="toggle-image" src="../../../assets/stamp/2.png" alt="2"
+    /></mat-button-toggle>
+</mat-button-toggle-group>
+<mat-button-toggle-group name="fontStyle" aria-label="Font Style" value="{{ stampService.stampChoice }}" vertical="false">
+    <mat-button-toggle value="3" (click)="onStampChanged(3)"
+        ><img class="toggle-image" src="../../../assets/stamp/3.png" alt="3"
+    /></mat-button-toggle>
+    <mat-button-toggle value="4" (click)="onStampChanged(4)"
+        ><img class="toggle-image" src="../../../assets/stamp/4.png" alt="4"
+    /></mat-button-toggle>
+    <mat-button-toggle value="5" (click)="onStampChanged(5)"
+        [matTooltip]="'Nikolay Cage'"
+        matTooltipPosition="right"
+        matTooltipShowDelay="0"
+        ><img class="toggle-image" src="../../../assets/stamp/5.png" alt="nikolay cage"
+    /></mat-button-toggle>
+</mat-button-toggle-group>
+</section>
+<section>
+<h2>Ratio</h2>
+<div class="flex-row align-center">
+    <mat-slider (input)="onRatioChanged($event.value)" min="0.5" max="2" step="0.1" [value]="stampService.ratio"></mat-slider>
+    <h3>{{ stampService.ratio }}</h3>
+</div>
+
+
+<h2>Angle</h2>
+<div class="flex-row align-center">
+    <mat-slider (input)="onAngleChanged($event.value)" [min]="angleMinValue" [max]="angleMaxValue" step="1" [value]="stampService.angle"></mat-slider>
+    <h3>{{ stampService.angle }}</h3>
+</div>
+</section>
+

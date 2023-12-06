@@ -1,0 +1,15 @@
+<mat-form-field>
+    <mat-label>Valeur hex</mat-label>
+    <span matPrefix>#</span>
+    <input
+        matInput
+        [value]="hexColor"
+        (keyup.enter)="onColorChanged()"
+        (change)="onColorChanged()"
+        [formControl]="hexColorFormControl"
+        (focus)="onFocus()"
+        (blur)="onBlur()"
+        maxlength="6"
+    />
+    <mat-error *ngIf="hexColorFormControl.hasError('pattern')"><strong>Valeur hex</strong> non valide.</mat-error>
+</mat-form-field>

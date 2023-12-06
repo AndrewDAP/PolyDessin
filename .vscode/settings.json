@@ -1,0 +1,8 @@
+{
+    "editor.defaultFormatter": "ms-vscode.vscode-typescript-tslint-plugin",
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true,
+        "source.fixAll.tslint": true
+    },
+    "html.format.indentInnerHtml": true,
+}

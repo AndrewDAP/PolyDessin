@@ -1,0 +1,43 @@
+.container {
+    width: 100%;
+    display: flex;
+    background-color: #ececec;
+    overflow: hidden;
+    height: 100%;
+}
+
+.drawing-container {
+    position: relative;
+    overflow: auto;
+    flex: 1 1 auto;
+    left: 8px;
+    top: 8px;
+}
+
+.drawing {
+    display: grid;
+    width: min-content;
+    outline: none;
+}
+
+.movable {
+    position: absolute;
+    transform: translateX(50%);
+    transform: translateY(50%);
+    z-index: 99;
+}
+
+.drag-boundary {
+    border: dotted #ccc 2px;
+
+    width: 100%;
+    height: 100%;
+}
+
+app-color-picker {
+    height: fit-content;
+    width: fit-content;
+    z-index: 100;
+    position: absolute;
+    right: 0;
+}

@@ -1,0 +1,59 @@
+<div class="container">
+    <h1 mat-dialog-title>Exporter le dessin</h1>
+    <section>
+        <a #download></a>
+        <canvas id="workingCanvas" #workingCanvas [attr.width]="width" [attr.height]="height"></canvas>
+        <div id="saving-options">
+            <form>
+                <mat-form-field>
+                    <mat-label>Nom fichier</mat-label>
+                    <input matInput [formControl]="titleFormControl" [maxlength]="MAX_TITLE_SIZE" />
+                    <mat-error *ngIf="titleFormControl.hasError('pattern') && !titleFormControl.hasError('required')">
+                        Veuillez n'utiliser que des lettres, chiffres, des '_', des '-' ou des espaces
+                    </mat-error>
+                    <mat-error *ngIf="titleFormControl.hasError('maxlength') && !titleFormControl.hasError('required')">
+                        25 caractères maximum
+                    </mat-error>
+                    <mat-error *ngIf="titleFormControl.hasError('required')"> Le nom du fichier est <strong>obligatoire</strong> </mat-error>
+                </mat-form-field>
+            </form>
+
+            <mat-button-toggle-group name="fontStyle" aria-label="Font Style" value="{{ fileChoice }}" vertical="false">
+                <mat-button-toggle (click)="fileChange(0)" value="0">png</mat-button-toggle>
+                <mat-button-toggle (click)="fileChange(1)" value="1">jpg</mat-button-toggle>
+            </mat-button-toggle-group>
+            
+        </div>
+    </section>
+    <section>
+        <h2 mat-dialog-title>Téléchargement</h2>
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" value="{{ saveChoice }}" vertical="false">
+            <mat-button-toggle (click)="saveChange(0)" value="0">Ma machine</mat-button-toggle>
+            <mat-button-toggle (click)="saveChange(1)" value="1">Imgur</mat-button-toggle>
+        </mat-button-toggle-group>
+    </section>
+    <section>
+        <div id="filtre">
+            <h2 mat-dialog-title>Choisir un filtre</h2>
+
+            <mat-button-toggle-group name="fontStyle" aria-label="Font Style" value="{{ filterChoice }}" vertical="false">
+                <mat-button-toggle (click)="filterChange(0)" value="0">Aucun filtre</mat-button-toggle>
+                <mat-button-toggle (click)="filterChange(1)" value="1">Grayscale</mat-button-toggle>
+                <mat-button-toggle (click)="filterChange(2)" value="2">HueRotate</mat-button-toggle>
+                <mat-button-toggle (click)="filterChange(3)" value="3">Sepia</mat-button-toggle>
+                <mat-button-toggle (click)="filterChange(4)" value="4">Invert</mat-button-toggle>
+                <mat-button-toggle (click)="filterChange(5)" value="5">Blur</mat-button-toggle>
+            </mat-button-toggle-group>
+            <div id="slider" *ngIf="showSlider">
+                <mat-slider [max]="sliderMax" [min]="sliderMin" [step]="sliderStep" [(value)]="sliderValue" (input)="applyFilter($event.value)">
+                </mat-slider>
+                <h3 id="slider-value" class="unselectable">{{ sliderValue | number: '1.0-0' }}</h3>
+            </div>
+        </div>
+    </section>
+
+    <mat-dialog-actions>
+        <button mat-raised-button [mat-dialog-close]="undefined">Annuler</button>
+        <button mat-raised-button (click)="accept()" color="primary" [disabled]="titleFormControl.invalid">{{acceptButton}}</button>
+    </mat-dialog-actions>
+</div>

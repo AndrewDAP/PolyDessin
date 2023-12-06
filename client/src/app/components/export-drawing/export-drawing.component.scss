@@ -1,0 +1,67 @@
+$margin-size: 16px;
+h1 {
+    font-weight: 800;
+    font-size: 1.5em;
+}
+
+img {
+    border-radius: $margin-size/2;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+section {
+    margin-top: $margin-size;
+    padding: $margin-size;
+    background-color: #eeeeee;
+    border-radius: $margin-size/2;
+    size: 1em;
+}
+
+h3 {
+    font-weight: 300;
+}
+
+mat-dialog-actions {
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+mat-button-toggle-group {
+    height: fit-content;
+    width: fit-content;
+}
+mat-form-field {
+    min-width: 400px;
+}
+
+#saving-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#filtre {
+    display: flex;
+    flex-direction: column;
+}
+
+mat-slider {
+    width: 100%;
+}
+
+#slider {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#workingCanvas {
+    transform: scale(0.7);
+    max-height: 300px;
+    max-width: 500px;
+}

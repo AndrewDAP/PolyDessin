@@ -1,0 +1,17 @@
+<div class="container">
+    <img
+        class="pointer unselectable"
+        src="assets/color/Pointer.svg"
+        width="20"
+        height="20"
+        [style.transform]="'translateX(' + (this.selectedWidth - 5) + 'px)'"
+        (mousedown)="onMouseDown($event)"
+        alt=""
+    />
+    <div class="flex-row">
+        <div>
+            <canvas #canvas class="color-slider" height="{{ canvasHeight }}" width="{{ canvasWidth }}" (mousedown)="onMouseDown($event)"> </canvas>
+        </div>
+        <span id="alpha-text" class="unselectable">{{ colorService.selectedColor.a | number: '.2-2' }}</span>
+    </div>
+</div>

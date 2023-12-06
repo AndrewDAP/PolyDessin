@@ -1,0 +1,8 @@
+<div id="canvas-container">
+    <canvas id="canvas" #baseCanvas [attr.width]="DEFAULT_WIDTH" [attr.height]="DEFAULT_HEIGHT"></canvas>
+    <canvas id="previewLayer" #previewCanvas [attr.width]="DEFAULT_WIDTH" [attr.height]="DEFAULT_HEIGHT"></canvas>
+    <canvas id="grid" #grid [attr.width]="DEFAULT_WIDTH" [attr.height]="DEFAULT_HEIGHT"></canvas>
+</div>
+
+<app-resizable></app-resizable>
+<app-selection></app-selection>
